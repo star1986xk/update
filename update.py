@@ -3,6 +3,8 @@
 import tkinter.messagebox
 import requests
 import re
+import configparser
+import os
 
 # VERSION_NOW='100'#1.0.0
 # UPDATE_DOWNLOAD_URL='http://www.url.com/a.zip' #新版本文件
@@ -23,11 +25,29 @@ import re
 
 
 
-# import os
-# main = "web.exe"
-# os.system(main)
 
-url = 'http://soft.sanmoo.com:8080/index.html'
-response = requests.get(url)
-verson = re.search('<Verson>(.*?)</Verson>',response.text)
-print(verson[1])
+
+try:
+    url_ver = 'http://soft.sanmoo.com:8080/index.html'
+    url_down = 'http://soft.sanmoo.com:8080/down/%E5%86%B0%E5%B1%B1%E6%8C%96%E8%AF%8D.zip'
+
+
+    response = requests.get(url_ver)
+    result = re.search('<Verson>(.*?)</Verson>',response.text)
+    verson_server = result[1]
+
+    cf = configparser.RawConfigParser()
+    cf.read("./config.ini", encoding='GBK')
+    verson_local = cf.get('setting','verson')
+
+    if verson_server == verson_local:
+        main = "web.exe"
+        os.system(main)
+    else:
+        tkinter.messagebox.showinfo('发现新版本，点击确定开始更新。')
+        response_zip = requests.get('url_down')
+        with open('QT_web.zip','wb') as f:
+            f.write(response_zip.content)
+except Exception as e:
+    tkinter.messagebox.showinfo(e)
+    pass
