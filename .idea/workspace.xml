@@ -22,6 +22,7 @@
   </component>
   <component name="ProjectId" id="1Tv1J3e91weqBDRy2Lp9UGwyiOu" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
