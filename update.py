@@ -2,7 +2,7 @@
 
 import tkinter.messagebox
 import requests
-
+import re
 
 # VERSION_NOW='100'#1.0.0
 # UPDATE_DOWNLOAD_URL='http://www.url.com/a.zip' #新版本文件
@@ -26,3 +26,8 @@ import requests
 # import os
 # main = "web.exe"
 # os.system(main)
+
+url = 'http://soft.sanmoo.com:8080/index.html'
+response = requests.get(url)
+verson = re.search('<Verson>(.*?)</Verson>',response.text)
+print(verson[1])
