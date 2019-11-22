@@ -5,7 +5,7 @@ import tkinter as tk
 import requests
 import re
 from win32com.client import Dispatch
-import zipfile
+
 
 class downwin_class(object):
     def __init__(self):
@@ -29,7 +29,7 @@ class downwin_class(object):
         self.window.resizable(width=False, height=False)
 
         # 说明文字
-        self.label_text = tk.Label(self.window, text='请下载新版本zip包，运行新版本！')
+        self.label_text = tk.Label(self.window, text='请下载新版本，运行新版本！')
         self.label_text.place(x=20, y=20)
         # 创建一个白底画布，作为进度条的底槽
         self.canvas = tk.Canvas(self.window, width=300, height=16, bg="white")
@@ -70,7 +70,7 @@ class downwin_class(object):
                 self.label_percentage.config(text=str(text) + '%')
                 # 刷新窗口
                 self.window.update()
-        tkinter.messagebox.showinfo('提示', '更新完成')
+        tkinter.messagebox.showinfo('提示', '更新完成,请重新开启')
         self.window.destroy()
 
     # 清空进度条
@@ -114,7 +114,7 @@ def main():
         verson_server = result[1]
         # 读取web.exe版本号
         path = './web.exe'
-        verson_local= get_version_via_com(path)
+        verson_local = get_version_via_com(path)
         # 版本相同打开版本
         if verson_server == verson_local:
             run_demo_exe()
