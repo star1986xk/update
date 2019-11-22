@@ -1,53 +1,130 @@
 # -*- coding: utf-8 -*-
-
+import subprocess
 import tkinter.messagebox
+import tkinter as tk
 import requests
 import re
-import configparser
-import os
+from win32com.client import Dispatch
+import zipfile
 
-# VERSION_NOW='100'#1.0.0
-# UPDATE_DOWNLOAD_URL='http://www.url.com/a.zip' #新版本文件
-# VERSION_URL='http://www.url.com/version'#最新版本号
+class downwin_class(object):
+    def __init__(self):
+        # 下载新版本zip的地址
+        self.url_down = 'http://soft.sanmoo.com:8080/down/%E5%86%B0%E5%B1%B1%E6%8C%96%E8%AF%8D.zip'
+        # 创建主窗口
+        self.window = tk.Tk()
+        # 设置标题
+        self.window.title('发现新版本')
+        self.window.iconbitmap('D:/PycharmProjects/update/icons/download.ico')
+        # 得到屏幕宽、高
+        sw = self.window.winfo_screenwidth()
+        sh = self.window.winfo_screenheight()
+        # 设置窗口大小及位置
+        ww = 440
+        wh = 100
+        x = (sw - ww) / 2
+        y = (sh - wh * 3) / 2
+        self.window.geometry("%dx%d+%d+%d" % (ww, wh, x, y))
+        # 设置窗口是否可变长、宽，True：可变，False：不可变
+        self.window.resizable(width=False, height=False)
 
-# try:
-#     ver=request.get(VERSION_URL)#获取最新版本号
-#    #然后自己根据版本号对版本进行对比处理
-#     #这里省略
-#     #直接跳到更新代码
-#     tkinter.messagebox.showwarning(title='提示', message='发现新版本，点击确定开始更新。更新时间跟网速有关，请耐心等待！')
-#     newFile=requests.get(UPDATE_DOWNLOAD_URL)
-#         with open("newFile_update.zip","wb") as fp:
-#             fp.write(newFile.content)
-# except:
-#     tkinter.messagebox.showwarning(title='警告', message='更新失败，请检查网络！')
-#     tkinter.messagebox.showwarning(title='提示', message='新版本软件下载完成！请在当前软件目录查看(文件名：newFile_update.zip)并使用新版本。')
+        # 说明文字
+        self.label_text = tk.Label(self.window, text='请下载新版本zip包，运行新版本！')
+        self.label_text.place(x=20, y=20)
+        # 创建一个白底画布，作为进度条的底槽
+        self.canvas = tk.Canvas(self.window, width=300, height=16, bg="white")
+        self.canvas.place(x=20, y=50)
+
+        # 百分比文字
+        self.label_percentage = tk.Label(self.window, text='0%')
+        self.label_percentage.place(x=325, y=50)
+        # 下载按钮
+        self.btn_download = tk.Button(self.window, text='开始下载', command=lambda: self.usr_download(self.url_down))
+        self.btn_download.place(x=365, y=45)
+        self.window.mainloop()
+
+    # 下载按钮函数
+    def usr_download(self, url):
+        # 点击按钮后把按钮设置为不可用
+        self.btn_download.config(text='正在下载', state=tk.DISABLED)
+        # stream=True表示请求成功后并不会立即开始下载，而是在调用iter_content方法之后才会开始下载
+        response = requests.get(url, verify=False, stream=True)
+        chunk_size = 1024000  # 设置每次下载的块大小
+        content_size = int(response.headers['content-length'])  # 从返回的response的headers中获取文件大小
+        # 画布上画一个矩形，作为进度条对象
+        fill_line = self.canvas.create_rectangle(0, 0, 0, 0, width=0, fill="green")
+        raise_data = chunk_size / content_size * 300  # 每次下载，进度条增量大小
+
+        # 将下载的数据写入文件
+        with open(url.split('/')[-1], 'wb') as f:
+            n = 0
+            for data in response.iter_content(chunk_size=chunk_size):  # 在循环读取文件时，刷新进度条
+                f.write(data)
+                n = n + raise_data
+                # 循环改变进度条的大小，实现进度条效果
+                self.canvas.coords(fill_line, (0, 0, n, 18))
+                # 循环改变百分比文字
+                text = int(n / 3)
+                if text >= 100:
+                    text = 100
+                self.label_percentage.config(text=str(text) + '%')
+                # 刷新窗口
+                self.window.update()
+        tkinter.messagebox.showinfo('提示', '更新完成')
+        self.window.destroy()
+
+    # 清空进度条
+    def clean_progressbar(self):
+        # 清空进度条
+        fill_line = self.canvas.create_rectangle(1.5, 1.5, 0, 23, width=0, fill="white")
+        x = 500  # 未知变量，可更改
+        n = 600 / x  # 465是矩形填充满的次数
+
+        for t in range(x):
+            n = n + 600 / x
+            # 以矩形的长度作为变量值更新
+            self.canvas.coords(fill_line, (0, 0, n, 60))
+            self.window.update()
 
 
+# 调用可执行文件
+def run_demo_exe():
+    myPopenObj = subprocess.Popen("web.exe -p 123")
+    try:
+        myPopenObj.wait(timeout=10)
+    except Exception as e:
+        print("===== process timeout ======")
+        myPopenObj.kill()
+        return None
 
 
+# 读取版本号
+def get_version_via_com(filename):
+    parser = Dispatch("Scripting.FileSystemObject")
+    version = parser.GetFileVersion(filename)
+    return version
 
-try:
-    url_ver = 'http://soft.sanmoo.com:8080/index.html'
-    url_down = 'http://soft.sanmoo.com:8080/down/%E5%86%B0%E5%B1%B1%E6%8C%96%E8%AF%8D.zip'
+
+def main():
+    try:
+        # 请求接口得到当前版本号
+        url_ver = 'http://soft.sanmoo.com:8080/index.html'
+        response = requests.get(url_ver)
+        result = re.search('<Verson>(.*?)</Verson>', response.text)
+        verson_server = result[1]
+        # 读取web.exe版本号
+        path = './web.exe'
+        verson_local= get_version_via_com(path)
+        # 版本相同打开版本
+        if verson_server == verson_local:
+            run_demo_exe()
+        # 版本不同,创建下载版本窗口
+        else:
+            down_obj = downwin_class()
+    except Exception as e:
+        tkinter.messagebox.showerror(title='错误', message=e)
+        pass
 
 
-    response = requests.get(url_ver)
-    result = re.search('<Verson>(.*?)</Verson>',response.text)
-    verson_server = result[1]
-
-    cf = configparser.RawConfigParser()
-    cf.read("./config.ini", encoding='GBK')
-    verson_local = cf.get('setting','verson')
-
-    if verson_server == verson_local:
-        main = "web.exe"
-        os.system(main)
-    else:
-        tkinter.messagebox.showinfo('发现新版本，点击确定开始更新。')
-        response_zip = requests.get('url_down')
-        with open('QT_web.zip','wb') as f:
-            f.write(response_zip.content)
-except Exception as e:
-    tkinter.messagebox.showinfo(e)
-    pass
+if __name__ == '__main__':
+    main()
