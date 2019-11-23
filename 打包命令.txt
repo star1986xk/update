@@ -1,2 +1,2 @@
 pyinstaller -Fw -i main_ico.ico update.py
-pyinstaller -F update.spe
+pyinstaller -F update.spec
