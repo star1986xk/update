@@ -89,7 +89,7 @@ class downwin_class(object):
 
 # 调用可执行文件
 def run_demo_exe():
-    myPopenObj = subprocess.Popen("web.exe -p 123")
+    myPopenObj = subprocess.Popen("main.exe -p 123")
     try:
         myPopenObj.wait(timeout=10)
     except Exception as e:
@@ -113,7 +113,7 @@ def main():
         result = re.search('<Verson>(.*?)</Verson>', response.text)
         verson_server = result[1]
         # 读取web.exe版本号
-        path = './web.exe'
+        path = './main.exe'
         verson_local = get_version_via_com(path)
         # 版本相同打开版本
         if verson_server == verson_local:
