@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
-import subprocess
 import tkinter.messagebox
 import tkinter as tk
 import requests
-import re
-from win32com.client import Dispatch
+from PyQt5.QtNetwork import QLocalSocket, QLocalServer
 
 
 class downwin_class(object):
@@ -15,7 +13,7 @@ class downwin_class(object):
         self.window = tk.Tk()
         # 设置标题
         self.window.title('发现新版本')
-        self.window.iconbitmap('D:/PycharmProjects/update/icons/download.ico')
+        self.window.iconbitmap('./download.ico')
         # 得到屏幕宽、高
         sw = self.window.winfo_screenwidth()
         sh = self.window.winfo_screenheight()
@@ -87,44 +85,21 @@ class downwin_class(object):
             self.window.update()
 
 
-# 调用可执行文件
-def run_demo_exe():
-    myPopenObj = subprocess.Popen("main.exe -p 123")
-    try:
-        myPopenObj.wait(timeout=10)
-    except Exception as e:
-        print("===== process timeout ======")
-        myPopenObj.kill()
-        return None
-
-
-# 读取版本号
-def get_version_via_com(filename):
-    parser = Dispatch("Scripting.FileSystemObject")
-    version = parser.GetFileVersion(filename)
-    return version
-
-
 def main():
     try:
-        # 请求接口得到当前版本号
-        url_ver = 'http://soft.sanmoo.com:8080/index.html'
-        response = requests.get(url_ver)
-        result = re.search('<Verson>(.*?)</Verson>', response.text)
-        verson_server = result[1]
-        # 读取web.exe版本号
-        path = './main.exe'
-        verson_local = get_version_via_com(path)
-        # 版本相同打开版本
-        if verson_server == verson_local:
-            run_demo_exe()
-        # 版本不同,创建下载版本窗口
+        serverName = 'dig_word_update_Server'
+        socket = QLocalSocket()
+        socket.connectToServer(serverName)
+        # 如果连接成功，表明server已经存在，当前已有实例在运行
+        if socket.waitForConnected(500):
+            pass
         else:
-            down_obj = downwin_class()
-    except Exception as e:
-        tkinter.messagebox.showerror(title='错误', message=e)
+            localServer = QLocalServer()  # 没有实例运行，创建服务器
+            localServer.listen(serverName)
+            # 处理其他
+            downwin_class()
+    except:
         pass
-
 
 if __name__ == '__main__':
     main()

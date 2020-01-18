@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17492c6d-bcb1-4d10-ae33-4e3e989f4720" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/update.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/icons/download.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_ico.ico" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/update.py" beforeDir="false" afterPath="$PROJECT_DIR$/update.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/update.spec" beforeDir="false" afterPath="$PROJECT_DIR$/update.spec" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/打包命令.txt" beforeDir="false" afterPath="$PROJECT_DIR$/打包命令.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -110,8 +119,36 @@
       <workItem from="1574408294018" duration="2445000" />
       <workItem from="1574412568114" duration="1129000" />
       <workItem from="1574469355799" duration="364000" />
-      <workItem from="1574474275092" duration="31000" />
+      <workItem from="1574474275092" duration="279000" />
+      <workItem from="1574992830519" duration="81000" />
+      <workItem from="1575427734703" duration="45000" />
+      <workItem from="1575428722133" duration="1311000" />
+      <workItem from="1576197799614" duration="3879000" />
+      <workItem from="1577326435070" duration="1574000" />
+      <workItem from="1577674731123" duration="1039000" />
     </task>
+    <task id="LOCAL-00001" summary="web-&gt;main">
+      <created>1574474323180</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574474323180</updated>
+    </task>
+    <task id="LOCAL-00002" summary="web-&gt;main">
+      <created>1574474498019</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1574474498019</updated>
+    </task>
+    <task id="LOCAL-00003" summary="web-&gt;main">
+      <created>1574474503744</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1574474503744</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,8 +167,23 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="web-&gt;main" />
+    <option name="LAST_COMMIT_MESSAGE" value="web-&gt;main" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/update.py</url>
+          <line>1</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/update$update.coverage" NAME="update Coverage Results" MODIFIED="1574409249023" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/update$update.coverage" NAME="update Coverage Results" MODIFIED="1575428789937" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/update$jieya.coverage" NAME="jieya Coverage Results" MODIFIED="1574402449587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -15,20 +15,23 @@ a = Analysis(['update.py'],
              win_private_assemblies=False,
              cipher=block_cipher,
              noarchive=False)
-a.datas +=[('download.ico','D:\\PycharmProjects\\update\\icons\\download.ico','DATA')]
 pyz = PYZ(a.pure, a.zipped_data,
              cipher=block_cipher)
 exe = EXE(pyz,
           a.scripts,
-          a.binaries,
-          a.zipfiles,
-          a.datas,
           [],
+          exclude_binaries=True,
           name='update',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
-          upx_exclude=[],
-          runtime_tmpdir=None,
-          console=False , icon='main_ico.ico')
+          console=False , icon='download.ico')
+coll = COLLECT(exe,
+               a.binaries,
+               a.zipfiles,
+               a.datas,
+               strip=False,
+               upx=True,
+               upx_exclude=[],
+               name='update')
