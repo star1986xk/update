@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="17492c6d-bcb1-4d10-ae33-4e3e989f4720" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/update.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/update.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/update.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/icons/download.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main_ico.ico" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/update.py" beforeDir="false" afterPath="$PROJECT_DIR$/update.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/update.spec" beforeDir="false" afterPath="$PROJECT_DIR$/update.spec" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/打包命令.txt" beforeDir="false" afterPath="$PROJECT_DIR$/打包命令.txt" afterDir="false" />
@@ -35,7 +30,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -148,7 +143,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574474503744</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="禁止多开">
+      <created>1579319183418</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1579319183418</updated>
+    </task>
+    <task id="LOCAL-00005" summary="禁止多开">
+      <created>1579319197244</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1579319197244</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,15 +178,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="web-&gt;main" />
-    <option name="LAST_COMMIT_MESSAGE" value="web-&gt;main" />
+    <MESSAGE value="禁止多开" />
+    <option name="LAST_COMMIT_MESSAGE" value="禁止多开" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/update.py</url>
-          <line>1</line>
-          <option name="timeStamp" value="3" />
+          <line>56</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

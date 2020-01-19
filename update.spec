@@ -4,11 +4,11 @@ block_cipher = None
 
 
 a = Analysis(['update.py'],
-             pathex=['D:\\PycharmProjects\\update'],
+             pathex=[os.path.join(DISTPATH, 'obf', 'temp'),'D:\\PycharmProjects\\update'],
              binaries=[],
-             datas=[],
-             hiddenimports=[],
-             hookspath=[],
+             datas=[('download.ico', '.')],
+             hiddenimports=['pytransform'],
+             hookspath=[os.path.join(DISTPATH, 'obf', 'temp')],
              runtime_hooks=[],
              excludes=[],
              win_no_prefer_redirects=False,

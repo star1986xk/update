@@ -1,2 +1,9 @@
-pyinstaller -Fw -i download.ico update.py
-pyinstaller -F update.spec
+pyinstaller --add-data="download.ico;." -w -i download.ico update.py
+
+             pathex=[os.path.join(DISTPATH, 'obf', 'temp'), ...],
+             binaries=[],
+             datas=[],
+             hiddenimports=['pytransform', ...],
+             hookspath=[os.path.join(DISTPATH, 'obf', 'temp'), ...],
+			 
+pyarmor pack -s update.spec update.py
